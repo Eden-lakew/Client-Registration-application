@@ -1,33 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
-    android:layout_width="15dp">
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="@drawable/white_card">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
 
-    </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="App Logo" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <!-- App Title -->
+    <TextView
+        android:id="@+id/appTitle"
+        android:text="Food Link Society"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#2E8030"
+        android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:elevation="4dp" />
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <!-- Card style container for buttons -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/white_card"
+        android:padding="20dp"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="center"
+        android:clipToOutline="true">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <!-- Button for Client Registration -->
+        <Button
+            android:id="@+id/registerClientBtn"
+            android:text="Client Registration"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button_green"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <!-- Button for Client Information -->
+        <Button
+            android:id="@+id/clientInfoBtn"
+            android:text="Client Information"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button_darkgreen"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <!-- Button for Volunteer Management -->
+        <Button
+            android:id="@+id/volunteerBtn"
+            android:text="Volunteer Management"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_deepgreen"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

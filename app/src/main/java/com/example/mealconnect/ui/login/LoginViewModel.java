@@ -11,6 +11,16 @@ import com.example.mealconnect.data.Result;
 import com.example.mealconnect.data.model.LoggedInUser;
 import com.example.mealconnect.R;
 
+/**
+ * LoginViewModel
+ *
+ * This ViewModel stores and manages login-related UI data.
+ * It handles:
+ *  - Input validation for username and password
+ *  - Communicating with LoginRepository to authenticate users
+ *  - Exposing LiveData objects to notify the UI of login status and form state
+ *
+ */
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
@@ -29,6 +39,10 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
+    /**
+     * Attempts to log user in using given username/password.
+     * Delegates authentication to LoginRepository.
+     */
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
         Result<LoggedInUser> result = loginRepository.login(username, password);
@@ -41,6 +55,10 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
+    /**
+     * Triggered when username or password changes.
+     * Updates form validation state using helper functions below.
+     */
     public void loginDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {
             loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
@@ -51,7 +69,7 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    // A placeholder username validation check
+    // A username validation check
     private boolean isUserNameValid(String username) {
         if (username == null) {
             return false;
@@ -63,8 +81,8 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    // A placeholder password validation check
+    // A password validation check
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && password.trim().length() > 4;
     }
 }

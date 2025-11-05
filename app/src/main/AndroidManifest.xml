@@ -12,24 +12,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MealConnect">
 
-        <!-- ✅ LoginActivity is now the launcher -->
+        <activity
+            android:name=".VolunteerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClientInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClientRegisterActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- 🏠 MainActivity (opened after successful login) -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.MealConnect" />
-
     </application>
 
 </manifest>
