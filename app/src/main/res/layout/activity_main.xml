@@ -21,11 +21,10 @@
     <!-- App Title -->
     <TextView
         android:id="@+id/appTitle"
-        android:text="Food Link Society"
+        android:text="Admin Home"
         android:textSize="28sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-medium"
-        android:textColor="#2E8030"
         android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,9 +51,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_button_green"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:background="@drawable/rounded_button_green"
+            android:backgroundTint="@null"  app:backgroundTint="#3CB371"  xmlns:app="http://schemas.android.com/apk/res-auto"/>
 
         <!-- Button for Client Information -->
         <Button
@@ -64,7 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_button_darkgreen"
+            android:background="@drawable/rounded_button_green"
+            android:backgroundTint="@null"  app:backgroundTint="#3CB371"  xmlns:app="http://schemas.android.com/apk/res-auto"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -75,7 +76,8 @@
             android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button_deepgreen"
+            android:background="@drawable/rounded_button_green"
+            android:backgroundTint="@null"  app:backgroundTint="#3CB371"  xmlns:app="http://schemas.android.com/apk/res-auto"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
     </LinearLayout>
