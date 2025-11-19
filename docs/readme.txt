@@ -48,3 +48,4 @@ password: admin
 3. Build & Run on emulator or physical device (Android 12+)
 4. Log in using default credentials above
 5. Verify dashboard options load without crashing
+test

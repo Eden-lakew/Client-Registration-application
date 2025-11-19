@@ -1,10 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClientInfoActivity">
+    android:padding="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvClientNameDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvClientIdDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvPhoneDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvAddressDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvLanguageDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First Language"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvHouseholdDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Household: "
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvQualificationDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qualification: "
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvRestrictionsDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dietary restrictions"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvAuthorizedPickupDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Authorized pickup"
+            android:layout_marginBottom="4dp" />
+
+
+        <TextView
+            android:id="@+id/tvDateDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Application date"
+            android:layout_marginBottom="4dp" />
+        <Button
+            android:id="@+id/btnEditClient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Client"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/btnDeleteClient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Client"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</ScrollView>

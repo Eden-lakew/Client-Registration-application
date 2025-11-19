@@ -1,5 +1,8 @@
 package com.example.mealconnect;
 
+import com.example.mealconnect.data.ClientRepository;
+import com.example.mealconnect.data.local.ClientEntity;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -45,6 +48,8 @@ public class ClientRegisterActivity extends AppCompatActivity {
     // 🌟 FIELD: To store references to the dynamically added member views
     private List<HouseholdMemberView> memberViewsList = new ArrayList<>();
 
+    private ClientRepository clientRepository;
+
     // 🌟 NESTED CLASS: To easily manage the fields for a single household member
     private static class HouseholdMemberView {
         final TextInputEditText etMemberFirstName;
@@ -77,6 +82,8 @@ public class ClientRegisterActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        clientRepository = new ClientRepository(this);
 
         // 2. UI INITIALIZATION (Binding the views)
         // Existing Bindings
@@ -166,13 +173,36 @@ public class ClientRegisterActivity extends AppCompatActivity {
                                 authorizedPickup,
                                 membersList          // NEW
                         );
+                        ClientEntity entity = new ClientEntity();
+                        entity.name = newClient.getName();
+                        entity.phone = newClient.getPhone();
+                        entity.address = newClient.getAddress();
+                        entity.firstLanguage = newClient.getFirstLanguage();
+                        entity.lowIncome = isLowIncome;
+                        entity.newcomer = isNewcomer;
+                        entity.senior = isSenior;
+                        entity.numAdults = numAdults;
+                        entity.numChildren = numChildren;
+                        entity.dietaryRestrictions = restrictions;
+                        entity.authorizedPickup = authorizedPickup;
 
-                        // 4. Success / Next Step
+                        // You already built the application date text:
+                        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                                .format(new Date());
+                        entity.dateApplied = date;
+
+                        // Hardcode a site code for now (e.g. Surrey)
+                        String siteCode = "SRY";     // or "SITE_A", etc.
+                        entity.siteCode = siteCode;
+
+                        // This actually inserts into Room in a background thread
+                        clientRepository.addClient(entity, siteCode);
+
+                        // Success message
                         Toast.makeText(ClientRegisterActivity.this,
-                                "Client Created: " + newClient.getName() +
-                                        " | Total Members: " + newClient.getMembers().size() +
-                                        " | Language: " + newClient.getFirstLanguage(),
+                                "Client saved! ID will show in list screen.",
                                 Toast.LENGTH_LONG).show();
+                        finish();
 
                         // TODO: Implement API call or database insertion here
                     } catch (NumberFormatException e) {
