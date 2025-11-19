@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mealconnect.ui.login.ClientListActivity;
+
 /**
  *
  * This is the entry point of the application. It displays the main
@@ -42,5 +44,9 @@ public class MainActivity extends AppCompatActivity {
         volunteerBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, VolunteerActivity.class));
         });
+        clientInfoBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, ClientListActivity.class));
+        });
+
     }
 }

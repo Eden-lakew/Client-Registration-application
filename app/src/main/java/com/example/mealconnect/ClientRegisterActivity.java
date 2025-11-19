@@ -1,5 +1,8 @@
 package com.example.mealconnect;
 
+import com.example.mealconnect.data.ClientRepository;
+import com.example.mealconnect.data.local.ClientEntity;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,7 +23,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.mealconnect.data.model.Client;
-import com.example.mealconnect.data.model.HouseholdMember; // 🌟 NEW IMPORT
+import com.example.mealconnect.data.model.HouseholdMember;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -36,16 +39,18 @@ public class ClientRegisterActivity extends AppCompatActivity {
     private Button btnSubmit;
     private CheckBox cbNoChicken, cbNoBeef, cbNoPork, cbNoTurkey, cbNoSausages, cbNone;
 
-    // 2. NEW Fields from XML
+    // 2.Fields from XML
     private TextView tvApplicationDate;
     private EditText etFirstLanguage, etNumAdults, etNumChildren;
     private CheckBox cbLowIncome, cbNewcomer, cbSenior;
     private LinearLayout llHouseholdMembersContainer;
 
-    // 🌟 FIELD: To store references to the dynamically added member views
+    //  FIELD: To store references to the dynamically added member views
     private List<HouseholdMemberView> memberViewsList = new ArrayList<>();
 
-    // 🌟 NESTED CLASS: To easily manage the fields for a single household member
+    private ClientRepository clientRepository;
+
+    //  NESTED CLASS: To easily manage the fields for a single household member
     private static class HouseholdMemberView {
         final TextInputEditText etMemberFirstName;
         final TextInputEditText etMemberLastName;
@@ -77,6 +82,8 @@ public class ClientRegisterActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        clientRepository = new ClientRepository(this);
 
         // 2. UI INITIALIZATION (Binding the views)
         // Existing Bindings
@@ -135,7 +142,7 @@ public class ClientRegisterActivity extends AppCompatActivity {
                         int numChildren = getNumberFromEditText(etNumChildren);
                         Integer householdSize = numAdults + numChildren;
 
-                        // 2. 🌟 Collect Household Member Data into List<HouseholdMember> 🌟
+                        // Collect Household Member Data into List<HouseholdMember>
                         List<HouseholdMember> membersList = new ArrayList<>();
                         // We iterate through the list of View references (memberViewsList)
                         // and create actual data model objects (HouseholdMember)
@@ -152,7 +159,7 @@ public class ClientRegisterActivity extends AppCompatActivity {
                         }
 
 
-                        // 3. 🌟 Instantiate the Client Object with ALL fields (using the new constructor) 🌟
+                        // 3. Instantiate the Client Object with ALL fields (using the new constructor) 🌟
                         Client newClient = new Client(
                                 name,
                                 phone,
@@ -166,13 +173,36 @@ public class ClientRegisterActivity extends AppCompatActivity {
                                 authorizedPickup,
                                 membersList          // NEW
                         );
+                        ClientEntity entity = new ClientEntity();
+                        entity.name = newClient.getName();
+                        entity.phone = newClient.getPhone();
+                        entity.address = newClient.getAddress();
+                        entity.firstLanguage = newClient.getFirstLanguage();
+                        entity.lowIncome = isLowIncome;
+                        entity.newcomer = isNewcomer;
+                        entity.senior = isSenior;
+                        entity.numAdults = numAdults;
+                        entity.numChildren = numChildren;
+                        entity.dietaryRestrictions = restrictions;
+                        entity.authorizedPickup = authorizedPickup;
 
-                        // 4. Success / Next Step
+                        // You already built the application date text:
+                        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                                .format(new Date());
+                        entity.dateApplied = date;
+
+                        // Hardcode a site code for now (e.g. Surrey)
+                        String siteCode = "SRY";     // or "SITE_A", etc.
+                        entity.siteCode = siteCode;
+
+                        // This actually inserts into Room in a background thread
+                        clientRepository.addClient(entity, siteCode);
+
+                        // Success message
                         Toast.makeText(ClientRegisterActivity.this,
-                                "Client Created: " + newClient.getName() +
-                                        " | Total Members: " + newClient.getMembers().size() +
-                                        " | Language: " + newClient.getFirstLanguage(),
+                                "Client saved! ID will show in list screen.",
                                 Toast.LENGTH_LONG).show();
+                        finish();
 
                         // TODO: Implement API call or database insertion here
                     } catch (NumberFormatException e) {
@@ -311,9 +341,6 @@ public class ClientRegisterActivity extends AppCompatActivity {
         return text.isEmpty() ? 0 : Integer.parseInt(text);
     }
 
-    // ===================================
-    // HELPER METHODS (UNCHANGED)
-    // ===================================
     private void setApplicationDate() {
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         tvApplicationDate.setText(String.format("Application Date: %s", date));
@@ -372,11 +399,7 @@ public class ClientRegisterActivity extends AppCompatActivity {
 
         return restrictions.toString();
     }
-    // ===================================
 
-    // ===================================
-    // VALIDATION (UNCHANGED)
-    // ===================================
 
     private boolean validateForm() {
         // Basic Client Info
