@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.volunteer.ScannerActivity">
+
+    <!-- 0. Camera Preview (Full Screen) -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/camera_preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Overlay Container for all UI elements (Vertical stack) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header Prompt -->
+        <TextView
+            android:id="@+id/scan_prompt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Point Camera at Client QR Code"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="#99000000"
+            android:textColor="@android:color/white"/>
+
+        <!-- Spacer to push content to the bottom -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 1. Scanner Result/Status Display -->
+        <TextView
+            android:id="@+id/result_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Scan Result: Waiting..."
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:background="#CC000000" />
+
+        <!-- 2. NEW: Client Confirmation Container (Visible when client is found) -->
+        <LinearLayout
+            android:id="@+id/client_confirmation_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Client Found! Verify Details:"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/client_details_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                tools:text="Client: Jane Doe\nID: 123456" />
+
+            <Button
+                android:id="@+id/confirm_handout_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="CONFIRM FOOD HANDOUT"
+                app:backgroundTint="#4CAF50"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+
+        <!-- 3. Manual ID Entry UI (Hidden by default) -->
+        <LinearLayout
+            android:id="@+id/manual_entry_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/manual_id_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter Client ID"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionDone"
+                android:padding="12dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="#CCCCCC"
+                android:background="#99000000"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/confirm_id_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                app:backgroundTint="@color/light_green_button"/>
+        </LinearLayout>
+
+        <!-- 4. Manual Entry Button -->
+        <Button
+            android:id="@+id/manual_entry_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Manual Phone number Entry"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:backgroundTint="@color/light_green_button" />
+
+        <!-- 5. Start/Stop Buttons Row (Camera Controls) -->
+        <LinearLayout
+            android:id="@+id/scan_control_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Start Scan Button (Visible when camera is OFF) -->
+            <Button
+                android:id="@+id/start_scan_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start Scanning"
+                android:layout_marginEnd="4dp"
+                android:visibility="visible"
+                app:backgroundTint="@color/light_green_button"/>
+
+            <!-- Stop Scan Button (Visible when camera is ON, managed by Java) -->
+            <Button
+                android:id="@+id/stop_scan_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Stop Scanning"
+                android:layout_marginStart="4dp"
+                android:visibility="gone"
+                app:backgroundTint="@color/light_green_button"/>
+
+        </LinearLayout>
+
+        <!-- 6. Logout Button (Full Width, below scan controls) -->
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGOUT"
+            android:layout_marginTop="12dp"
+            app:backgroundTint="@color/light_green_button"
+            android:textColor="@android:color/white"
+            android:elevation="4dp" />
+
+    </LinearLayout>
+</FrameLayout>

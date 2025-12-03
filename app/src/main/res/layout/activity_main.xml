@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/white_card">
+
+    <!-- Toolbar for Back Button -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#3CB371"
+        android:elevation="4dp"
+        app:title="Admin Dashboard"
+        app:titleTextColor="@android:color/white"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:navigationIconTint="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/logoImage"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="App Logo" />
+
+        <!-- App Title -->
+        <TextView
+            android:id="@+id/appTitle"
+            android:text="Admin Home"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp" />
+
+        <!-- Card style container for buttons -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/white_card"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="center"
+            android:clipToOutline="true">
+
+            <!-- Button for Client Registration -->
+            <Button
+                android:id="@+id/registerClientBtn"
+                android:text="Client Registration"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_button_green"
+                android:backgroundTint="@null"  app:backgroundTint="#3CB371"  xmlns:app="http://schemas.android.com/apk/res-auto"/>
+
+            <!-- Button for Client Information -->
+            <Button
+                android:id="@+id/clientInfoBtn"
+                android:text="Client Information"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button_green"
+                android:backgroundTint="@null"  app:backgroundTint="#3CB371"  xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <!-- Button for Volunteer Management -->
+            <Button
+                android:id="@+id/volunteerBtn"
+                android:text="Volunteer Management"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button_green"
+                android:backgroundTint="@null"  app:backgroundTint="#3CB371"  xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <!-- Button for Logout -->
+            <Button
+                android:id="@+id/logoutBtn"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_green"
+                android:backgroundTint="@null"  app:backgroundTint="#3CB371"  xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

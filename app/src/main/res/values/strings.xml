@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Meal Connect</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum">
+        Hello GinjaNinja
+    </string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+
+
+    <!-- Login page -->
+    <string name="admin_login_title">Admin Login</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="button_login">Login</string>
+
+    <string name="volunteer_login_title">Volunteer Login</string>
+    <string name="hint_volunteer_email">Volunteer Email</string>
+
+    <string name="login_failed_message">Invalid credentials or user not found.</string>
+
+    <!-- Client Registration -->
+    <string name="register_client">Register Client</string>
+    <string name="client_name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="dietary_restrictions">Dietary Restrictions</string>
+    <string name="authorized_pickup_person">Authorized Pickup Person</string>
+    <string name="submit">Submit</string>
+
+    <string name="application_date">Application Date</string>
+    <string name="first_language">First Language</string>
+
+    <string name="qualification_status">Qualification Status</string>
+    <string name="low_income">Low Income</string>
+    <string name="newcomer">Newcomer</string>
+    <string name="senior_65_plus">Senior (65+ years)</string>
+
+    <string name="household_details">Household Details</string>
+    <string name="no_of_adults">No. of Adults</string>
+    <string name="no_of_children">No. of Children</string>
+
+    <string name="member_first_name">First Name</string>
+    <string name="member_last_name">Last Name</string>
+    <string name="member_dob">Date of Birth (YYYY-MM-DD)</string>
+    <string name="member_allergy">Known Allergies/Notes</string>
+    <string name="member_contact_number">Member Contact Number</string>
+</resources>
